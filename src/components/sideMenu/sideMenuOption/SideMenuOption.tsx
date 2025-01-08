@@ -1,15 +1,21 @@
+import classNames from "classnames";
 import { IMenuOptions } from "../../../constants/menuOptions";
 import './SideMenuOption.scss';
 
 interface SideMenuOptionProps {
-    option:IMenuOptions
-    handleClick: (name: string) => void;
+    option:IMenuOptions,
+    selectedOptionKey:string,
+    handleClick: (name: string) => void,
 }
 
-const SideMenuOption = ({option, handleClick}: SideMenuOptionProps) => {
+const SideMenuOption = ({option,selectedOptionKey, handleClick}: SideMenuOptionProps) => {
     
+
+
+    const optionsClassName= classNames({SideMenuOption: true, selected: selectedOptionKey === option.key})
+
     return ( 
-    <div className="SideMenuOption" onClick={()=>handleClick(option.key)}>
+    <div className={optionsClassName} onClick={()=>handleClick(option.key)}>
         {option.name}
     </div>
      );
