@@ -11,7 +11,7 @@ const SideMenu = ({handleSelectedOption}:props) => {
     return ( 
         <div className='SideMenu'>
             <div>
-                <h2>Avaliable Challenges</h2>
+                <h2>Available Challenges</h2>
                 <h3>select a challenge</h3>
             </div>
             {menuOptions.map((option) => (
