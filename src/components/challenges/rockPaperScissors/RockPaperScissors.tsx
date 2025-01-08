@@ -63,7 +63,6 @@ const RockPaperScissors = () => {
                                 {opponentChoice === 2 && "scissors"}
                                 
                             </div>
-                            {opponentChoice}
                         </div>
                     </div>
                     <div>
