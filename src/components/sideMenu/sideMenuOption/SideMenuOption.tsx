@@ -1,4 +1,5 @@
 import { IMenuOptions } from "../../../constants/menuOptions";
+import './SideMenuOption.scss';
 
 interface SideMenuOptionProps {
     option:IMenuOptions
@@ -6,8 +7,9 @@ interface SideMenuOptionProps {
 }
 
 const SideMenuOption = ({option, handleClick}: SideMenuOptionProps) => {
+    
     return ( 
-    <div onClick={()=>handleClick(option.key)}>
+    <div className="SideMenuOption" onClick={()=>handleClick(option.key)}>
         {option.name}
     </div>
      );
