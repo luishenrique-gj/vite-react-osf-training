@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useState } from "react"
 import "./RockPaperScissors.scss"
 import classNames from "classnames";
-import EndgameMessage from "./EndGameMessage";
-
+import EndgameMessage from "../endGameMessage/EndGameMessage";
 
 const RockPaperScissors = () => {
 
@@ -17,7 +16,7 @@ const RockPaperScissors = () => {
 
     const handleClick = (choice: number) => {
         setPlayerChoice(choice);
-        setOpponentChoice(Math.floor(Math.random() * 2));
+        setOpponentChoice(Math.floor(Math.random() * 3));
     }
 
     useEffect(()=>{
@@ -62,16 +61,16 @@ const RockPaperScissors = () => {
                                 {opponentChoice === 0 && "rock"}
                                 {opponentChoice === 1 && "paper"}
                                 {opponentChoice === 2 && "scissors"}
+                                
                             </div>
+                            {opponentChoice}
                         </div>
                     </div>
                     <div>
                         <h1>VS</h1>
                         <h2>Score</h2>
                         <div>
-                            <span>{score.opponent}</span>
-                            <span>:</span>
-                            <span>{score.player}</span>
+                            <span>{score.opponent}:{score.player}</span>
                             <EndgameMessage case={endGameCase}/>
                         </div>
                     </div>
