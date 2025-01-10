@@ -1,6 +1,6 @@
 import { menuOptions } from "../../constants/menuOptions";
 import SideMenuOption from "./sideMenuOption/SideMenuOption";
-import "./sideMenu.scss";
+import "./SideMenu.scss";
 
 interface props {
     handleSelectedOption: (option:string) => void;
