@@ -3,14 +3,11 @@ import { MemoryRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import SideMenuOption from '../components/sideMenu/sideMenuOption/SideMenuOption'; // Adjust the import path as necessary
 import {  menuOptions } from '../constants/menuOptions';
 
-// Mock IMenuOptions for testing
-
-// Mock useNavigate
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
     useNavigate: jest.fn(),
   }));
-  
+
 describe('SideMenuOption Component', () => {
   it('renders with correct text', () => {
     render(
