@@ -24,7 +24,7 @@ const SideMenuOption = ({option}: SideMenuOptionProps) => {
     });
 
     return (
-        <div className={optionsClassName} onClick={handleRedirectToRoute}>
+        <div data-testid={`side-menu-option-${option.key}`} className={optionsClassName} onClick={handleRedirectToRoute}>
             {option.name}
         </div>
     );
