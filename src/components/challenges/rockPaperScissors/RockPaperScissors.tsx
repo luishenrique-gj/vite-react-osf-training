@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useState } from "react"
-import "./RockPaperScissors.scss"
+import { useMemo, useState } from "react"
 import classNames from "classnames";
 import EndgameMessage from "../endGameMessage/EndGameMessage";
+import "./RockPaperScissors.scss"
 
 const RockPaperScissors = () => {
 
@@ -12,37 +12,32 @@ const RockPaperScissors = () => {
 
     const [playerChoice, setPlayerChoice] = useState<number | null>(null);
     const [opponentChoice, setOpponentChoice] = useState<number | null>(null);
-    const [endGameCase, setEndGameCase] = useState<number | null>(null);
 
     const handleClick = (choice: number) => {
         setPlayerChoice(choice);
-        setOpponentChoice(Math.floor(Math.random() * 3));
-    }
+        const opponentChoice = Math.floor(Math.random() * 3);
+        setOpponentChoice(opponentChoice);
+    
+        if (choice === opponentChoice) return;
+    
+        const winningConditions = [[0, 2],[1, 0],[2, 1]];
+    
+        const isPlayerWinner = winningConditions.some(
+            ([player, opponent]) => player === choice && opponent === opponentChoice
+        );
+    
+        setScore(prev => ({
+            ...prev,
+            player: prev.player + (isPlayerWinner ? 1 : 0),
+            opponent: prev.opponent + (isPlayerWinner ? 0 : 1)
+        }));
+    };
 
-    useEffect(()=>{
-        if( playerChoice !== null && opponentChoice !== null ){
-            if(playerChoice === opponentChoice ) {
-                setEndGameCase(1)
-                return;
-            }
-            if((playerChoice === 0 && opponentChoice === 2) ||
-             (playerChoice === 1 && opponentChoice === 0) || 
-             (playerChoice === 2 && opponentChoice === 1)) {
-                setScore(prev =>({...prev, player: prev.player + 1}));
-                setEndGameCase(2)
-                return;
-            } 
-            setEndGameCase(3)
-            setScore(prev =>({...prev, opponent: prev.opponent + 1}));
-           
-        }
-    },[opponentChoice, playerChoice])
-
-    const opponentClassName = useMemo(()=>classNames({
+    const opponentClassName = useMemo(()=> classNames({
         RockPaperScissors__opponent: true,
-        "RockPaperScissors__opponent-rock": opponentChoice === 0,
-        "RockPaperScissors__opponent-paper": opponentChoice === 1,
-        "RockPaperScissors__opponent-scissors": opponentChoice === 2,
+        "-rock": opponentChoice === 0,
+        "-paper": opponentChoice === 1,
+        "-scissors": opponentChoice === 2,
     }),[opponentChoice])
 
 
@@ -52,12 +47,13 @@ const RockPaperScissors = () => {
                     Rock Paper Scissors
                 </h2>
                 <div className="RockPaperScissors__game-board">
-                    <div>
+                    <div >
                         <h1>
                             opponent
                         </h1>
                         <div className="RockPaperScissors__button-wrapper">
                             <div className={opponentClassName}>
+                                {opponentChoice === null && "-"}
                                 {opponentChoice === 0 && "rock"}
                                 {opponentChoice === 1 && "paper"}
                                 {opponentChoice === 2 && "scissors"}
@@ -70,20 +66,20 @@ const RockPaperScissors = () => {
                         <h2>Score</h2>
                         <div>
                             <span>{score.opponent}:{score.player}</span>
-                            <EndgameMessage case={endGameCase}/>
+                            <EndgameMessage playerChoice={playerChoice} opponentChoice={opponentChoice}/>
                         </div>
                     </div>
                     <div>
                         <h1>You</h1>
 
                         <div className="RockPaperScissors__button-wrapper">
-                            <button onClick={() => handleClick(0)}>
+                            <button className="RockPaperScissors__player" onClick={() => handleClick(0)}>
                                 rock
                             </button>
-                            <button onClick={() => handleClick(1)}>
+                            <button  className="RockPaperScissors__player" onClick={() => handleClick(1)}>
                                 paper
                             </button>
-                            <button onClick={() => handleClick(2)}>
+                            <button  className="RockPaperScissors__player" onClick={() => handleClick(2)}>
                                 scissors
                             </button>
                         </div>
