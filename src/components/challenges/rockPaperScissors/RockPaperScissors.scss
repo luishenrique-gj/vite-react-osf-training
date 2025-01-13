@@ -1,4 +1,11 @@
 .RockPaperScissors {
+    width: 50%;
+    height: 100vh;
+    background-color: #617676;
+    
+    >h2{
+        align-items: center;
+    }
 
     & &__game-board {
         display: flex;
@@ -14,10 +21,21 @@
         justify-content: center;
         flex-wrap: wrap;
         flex-direction: column;
+        align-items: center;
         gap: 10%;
     }
 
+    & &__opponent-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        flex-direction: row;
+        align-content: center;
+    }
+
     & &__opponent{
+        width:54px;
+        height: 24px;
         border-radius: 8px;
         border: 1px solid transparent;
         padding: 0.6em 1.2em;
@@ -37,5 +55,18 @@
         &-scissors{
             border-color: #646cff;
         }
+    }
+
+    & &__player {
+        width: 94px;
+        height: 45px;
+        border-radius: 8px;
+        border: 1px solid transparent;
+        padding: 0.6em 1.2em;
+        font-size: 1em;
+        font-weight: 500;
+        font-family: inherit;
+        background-color: #1a1a1a;
+        transition: border-color 0.25s;
     }
 }
