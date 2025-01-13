@@ -4,21 +4,21 @@ import EndgameMessage from '../components/challenges/endGameMessage/EndGameMessa
 
 describe('EndgameMessage', () => {
   it('renders correctly for a draw', () => {
-    const { getByText } = render(<EndgameMessage case={1} />);
+    const { getByText } = render(<EndgameMessage playerChoice={1} opponentChoice={1} />);
     const element = getByText("It's a draw!");
     
     expect(element).toBeInTheDocument();
   });
 
   it('renders correctly for a win', () => {
-    const { getByText } = render(<EndgameMessage case={2} />);
+    const { getByText } = render(<EndgameMessage playerChoice={0} opponentChoice={2} />);
     const element = getByText("You won!");
 
     expect(element).toBeInTheDocument();
   });
 
   it('renders correctly for a loss', () => {
-    const { getByText } = render(<EndgameMessage case={3} />);
+    const { getByText } = render(<EndgameMessage playerChoice={1} opponentChoice={2} />);
     const element = getByText("You lost!");
     
     expect(element).toBeInTheDocument();
