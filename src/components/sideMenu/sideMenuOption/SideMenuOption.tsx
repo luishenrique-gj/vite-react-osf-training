@@ -1,24 +1,33 @@
 import classNames from "classnames";
 import { IMenuOptions } from "../../../constants/menuOptions";
 import './SideMenuOption.scss';
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface SideMenuOptionProps {
     option:IMenuOptions,
-    selectedOptionKey:string,
-    handleClick: (name: string) => void,
 }
 
-const SideMenuOption = ({option,selectedOptionKey, handleClick}: SideMenuOptionProps) => {
+const SideMenuOption = ({option}: SideMenuOptionProps) => {
     
+    const location = useLocation();
+    const navigate = useNavigate();
 
+    const currentPath = location.pathname.split('/').pop();
 
-    const optionsClassName= classNames({SideMenuOption: true, selected: selectedOptionKey === option.key})
+    const handleRedirectToRoute = () => {
+        navigate(option.path);
+    };
 
-    return ( 
-    <div className={optionsClassName} onClick={()=>handleClick(option.key)}>
-        {option.name}
-    </div>
-     );
+    const optionsClassName = classNames({
+        SideMenuOption: true,
+        selected: currentPath === option.key
+    });
+
+    return (
+        <div className={optionsClassName} onClick={handleRedirectToRoute}>
+            {option.name}
+        </div>
+    );
 }
  
 export default SideMenuOption;

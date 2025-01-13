@@ -2,12 +2,7 @@ import { menuOptions } from "../../constants/menuOptions";
 import SideMenuOption from "./sideMenuOption/SideMenuOption";
 import "./SideMenu.scss";
 
-interface props {
-    handleSelectedOption: (option:string) => void;
-    selectedOptionKey:string
-}
-
-const SideMenu = ({handleSelectedOption, selectedOptionKey}:props) => {
+const SideMenu = () => {
 
     return ( 
         <div className='SideMenu'>
@@ -17,7 +12,7 @@ const SideMenu = ({handleSelectedOption, selectedOptionKey}:props) => {
             </div>
             <div className="SideMenu__options-wrapper">
                 {menuOptions.map((option) => (
-                    <SideMenuOption  selectedOptionKey={selectedOptionKey} key={option.key} option={option} handleClick={handleSelectedOption} />
+                    <SideMenuOption  key={option.key} option={option} />
                 ))}
             </div>
         </div>
